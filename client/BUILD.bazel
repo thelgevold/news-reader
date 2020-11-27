@@ -1,0 +1,39 @@
+package(default_visibility = ["//visibility:public"])
+load("@build_bazel_rules_svelte//:defs.bzl", "svelte", "bundle_prod", "bundle_dev")
+
+svelte(
+  name = "App",
+  srcs = [
+    "main.js",
+    ":externs.js"
+  ],
+  entry_point = "App.svelte",
+  deps = [
+    "//client/router:Router",
+    "//client/router:Route",
+    "//client/router:Link",
+    "//client/routes/home:Home",
+    "//client/routes/add-source:AddSource"
+  ]
+)
+
+bundle_prod(
+  name = "bundle",
+  entry_point = "main.js",
+  closure_config = ":closure-config.json",
+  deps = [
+    ":App",
+    "@npm//svelte-routing",
+    "@npm//svelte-forms-lib",
+  ]
+)
+
+bundle_dev(
+  name = "bundle.dev",
+  entry_point = "main.js",
+  deps = [
+    ":App",
+    "@npm//svelte-routing",
+    "@npm//svelte-forms-lib",
+  ]
+)

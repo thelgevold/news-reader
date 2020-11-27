@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@build_bazel_rules_svelte//:defs.bzl", "svelte")
+
+svelte(
+  name = "Home",
+  srcs = [
+    "news-service.js",
+    "story.js",
+    "//client/routes/shared"
+  ],  
+  entry_point = "Home.svelte"
+)

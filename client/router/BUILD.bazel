@@ -1,0 +1,60 @@
+package(default_visibility = ["//visibility:public"])
+load("@build_bazel_rules_svelte//:defs.bzl", "svelte")
+
+genrule(
+    name = "utils",
+    srcs = ["//:node_modules/svelte-routing/src/utils.js"],
+    outs = ["utils.js"],
+    cmd = "cp $< $@",
+)
+
+genrule(
+    name = "history",
+    srcs = ["//:node_modules/svelte-routing/src/history.js"],
+    outs = ["history.js"],
+    cmd = "cp $< $@",
+)
+
+genrule(
+    name = "contexts",
+    srcs = ["//:node_modules/svelte-routing/src/contexts.js"],
+    outs = ["contexts.js"],
+    cmd = "cp $< $@",
+)
+
+svelte(
+  name = "Router",
+  srcs = [
+    ":history",
+    ":contexts",
+    ":utils"
+  ],
+  entry_point = "//:node_modules/svelte-routing/src/Router.svelte",
+  deps = [
+    
+  ]
+)
+
+svelte(
+  name = "Route",
+  srcs = [
+    ":contexts",
+  ],
+  entry_point = "//:node_modules/svelte-routing/src/Route.svelte",
+  deps = [
+    
+  ]
+)
+
+svelte(
+  name = "Link",
+  srcs = [
+    ":history",
+    ":contexts",
+    ":utils"
+  ],
+  entry_point = "//:node_modules/svelte-routing/src/Link.svelte",
+  deps = [
+    
+  ]
+)

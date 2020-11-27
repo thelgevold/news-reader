@@ -1,0 +1,9 @@
+exports_files([
+    "node_modules/svelte-routing/src/Router.svelte",
+    "node_modules/svelte-routing/src/Route.svelte",
+    "node_modules/svelte-routing/src/Link.svelte",
+    "node_modules/svelte-routing/src/contexts.js",
+    "node_modules/svelte-routing/src/history.js",
+    "node_modules/svelte-routing/src/utils.js",
+    "node_modules/bootstrap/dist/css/bootstrap.min.css"
+])

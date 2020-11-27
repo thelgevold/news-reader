@@ -1,0 +1,30 @@
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_binary")
+
+genrule(
+    name = "bootstrap",
+    srcs = ["//:node_modules/bootstrap/dist/css/bootstrap.min.css"],
+    outs = ["bootstrap.min.css"],
+    cmd = "cp $< $@",
+)
+
+core_binary(
+    name = "api.exe",
+    srcs = [
+        "Startup.cs",
+        "Program.cs",
+        "Controllers/NewsController.cs",
+        "Controllers/IndexController.cs"
+    ],
+    deps = [
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:Microsoft.AspNetCore.App",
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+        "//News.API/Services:Services.dll",
+        "//News.API/Model:Model.dll"
+    ],
+    data = [
+        "index.html",
+        "//client:bundle",
+        #"//client:bundle.dev",
+        ":bootstrap" 
+    ]
+)

@@ -1,0 +1,15 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
+
+core_library(
+    name = "Services.dll",
+    srcs = [
+        "NewsService.cs"        
+    ],
+    deps = [
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:Microsoft.AspNetCore.App",
+        "//News.API/Model:Model.dll"
+    ]
+)

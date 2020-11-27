@@ -1,0 +1,7 @@
+{
+    "node_modules": [
+        "svelte-forms-lib/package.json",
+        "svelte-forms-lib/build/index.mjs"
+    ],
+   "entry_point": "main.js"
+}
