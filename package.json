@@ -3,5 +3,11 @@
         "svelte-routing": "1.4.2",
         "svelte-forms-lib": "1.2.2",
         "bootstrap": "4.5.3"
+    },
+    "devDependencies": {
+        "@bazel/ibazel": "0.14.0"
+    },
+    "scripts": {
+        "serve": "ibazel run //News.API:api.exe"
     }
 }
